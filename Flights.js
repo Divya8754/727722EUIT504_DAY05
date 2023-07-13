@@ -1,49 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const FlightForm = () => {
-  const [departure, setDeparture] = useState('');
-  const [destination, setDestination] = useState('');
-
-  // Sample list of departure and destination options
-  const flightOptions = [
-    { id: 1, name: 'New York' },
-    { id: 2, name: 'London' },
-    { id: 3, name: 'Paris' },
-    { id: 4, name: 'Tokyo' },
-    // Add more options as needed
+const Flights = () => {
+  const flightRoutes = [
+    { id: 1, departure: 'New York', destination: 'London', price: 500 },
+    { id: 2, departure: 'London', destination: 'Paris', price: 300 },
+    { id: 3, departure: 'New York', destination: 'Paris', price: 600 },
+    { id: 4, departure: 'Paris', destination: 'Tokyo', price: 800 },
+    // Add more routes as needed
   ];
-
-  const handleDepartureChange = (e) => {
-    setDeparture(e.target.value);
-  };
-
-  const handleDestinationChange = (e) => {
-    setDestination(e.target.value);
-  };
 
   return (
     <div>
-      <label>Departure:</label>
-      <select value={departure} onChange={handleDepartureChange}>
-        <option value="">Select Departure</option>
-        {flightOptions.map((option) => (
-          <option key={option.id} value={option.name}>
-            {option.name}
-          </option>
-        ))}
-      </select>
-
-      <label>Destination:</label>
-      <select value={destination} onChange={handleDestinationChange}>
-        <option value="">Select Destination</option>
-        {flightOptions.map((option) => (
-          <option key={option.id} value={option.name}>
-            {option.name}
-          </option>
-        ))}
-      </select>
+      <h2>Flight Routes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Departure</th>
+            <th>Destination</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {flightRoutes.map((route) => (
+            <tr key={route.id}>
+              <td>{route.departure}</td>
+              <td>{route.destination}</td>
+              <td>{route.price}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
 
-export default FlightForm;
+export default Flights;
